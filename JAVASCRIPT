@@ -174,20 +174,66 @@ function GlobalIslemler() {
     $('.CategoryBody .katSliderBlock').prependTo('#divIcerik');
 
 
+/* ==========================================================================
+       YENİ NESİL PC CLICK & AKORDEON MEGA MENÜ SİSTEMİ
+       ========================================================================== */
     if (windowidth > 1099) {
-
-
-
-        $('body').on('mouseenter', '.MenuCenter > div > div.katbtn', function () {
-            $('#headerNew .header .newHeaderNavigation:not(.mobileStyle)').addClass('active');
-            $(this).addClass('active');
-            $('#divIcerik').addClass('hoverr');
+        // Alt kategorisi (nav-submenu) olan sütunları otomatik işaretle
+        $('.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li').each(function() {
+            if ($(this).find('.nav-submenu').length > 0) {
+                $(this).addClass('has-sub');
+            }
         });
 
-        $('body').on('mouseleave', '#headerNew .header .newHeaderNavigation', function () {
-            $(this).removeClass('active');
-            $('#divIcerik').removeClass('hoverr');
+        // Sağ üst köşeye PC için şık bir 'Kapat' butonu enjekte et
+        if ($('.newHeaderNavigation:not(.mobileStyle) .close-pc-mega-menu').length == 0) {
+            $('.newHeaderNavigation:not(.mobileStyle)').prepend('<div class="close-pc-mega-menu"><i class="fa fa-times"></i> Menüyü Kapat</div>');
+        }
+
+        // "Ürün Kategorileri" butonuna tıklandığında menüyü aç/kapat
+        $('body').on('click', '.MenuCenter > div > div.katbtn', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#headerNew .header .newHeaderNavigation:not(.mobileStyle)').toggleClass('active');
+            $(this).toggleClass('active');
+            $('#divIcerik').toggleClass('hoverr');
         });
+
+        // Sol taraftaki Ana Kategorilere tıklandığında sağ paneli aç
+        $('body').on('click', '.newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li > a', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).parent().addClass('clicked-active').siblings().removeClass('clicked-active');
+        });
+
+        // Sağ taraftaki Ana Alt Kategorilere tıklandığında alt listeyi akordeon aç/kapat
+        $('body').on('click', '.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li.has-sub > a', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var parentLi = $(this).parent();
+            parentLi.toggleClass('submenu-open').find('.nav-submenu').slideToggle(250);
+        });
+
+        // Kapat (X) butonuna basınca kapatma fonksiyonunu çağır
+        $('body').on('click', '.close-pc-mega-menu', function() {
+            closeMegaMenuGlobal();
+        });
+
+        // Dışarıya/Boşluğa tıklandığında menüyü kapat
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('.newHeaderNavigation, .katbtn').length) {
+                closeMegaMenuGlobal();
+            }
+        });
+    }
+
+    // Global Kapatma Fonksiyonu
+    function closeMegaMenuGlobal() {
+        $('.newHeaderNavigation:not(.mobileStyle), .MenuCenter > div > div.katbtn').removeClass('active');
+        $('#divIcerik').removeClass('hoverr');
+        $('.newHeaderNavUl > li').removeClass('clicked-active');
+        $('.menu-wrap .kolon > li').removeClass('submenu-open');
+        $('.menu-wrap .kolon .nav-submenu').hide();
     }
 
     if ($("#headerNew .header .newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li > a .upTagText img").length == 0) {
