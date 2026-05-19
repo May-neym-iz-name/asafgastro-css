@@ -13675,7 +13675,7 @@ body #header .stories.carousel {
 }
 
 .newHeaderNavigation:not(.mobileStyle) .menu-wrap {
-    display: block !important;
+    display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
@@ -13685,14 +13685,13 @@ body #header .stories.carousel {
     border-top: 1px solid #eee;
 }
 
-.newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li:hover .menu-wrap {
+.newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li.clicked-active .menu-wrap {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
     transform: translateY(0);
     background: #fff !important;
-    transition: all 0.5s ease;
 }
 
 .newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li > a {
@@ -14439,11 +14438,100 @@ body .newHeaderNavigation.active {
         padding-bottom: 20px;
     }
 
+/* Her bir alt kategori sütun başlığını dikdörtgen çerçeveye alma */
 .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li {
-    padding: 0px;
-    width: 100%;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px !important;
+    background: #fbfbfb !important;
+    margin-bottom: 16px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    width: 100% !important;
     float: left;
     height: auto;
+}
+
+/* Sol dikey menüyü ve ana kapsayıcıyı sınırlandırma */
+body .newHeaderNavigation:not(.mobileStyle) {
+    border: 2px solid #ef7c00 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    padding-top: 50px !important;
+    background: #ffffff !important;
+}
+
+body .newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl {
+    border-right: 1px solid #e5e5e5 !important;
+}
+
+/* Yazı boyutlarını büyütme ve belirginleştirme */
+.newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li > a {
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    color: #222222 !important;
+}
+
+.newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li.clicked-active > a {
+    color: #ef7c00 !important;
+}
+
+/* Ana Alt Kategoriler (Bulaşık Yıkama vb.) */
+.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li > a {
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 1px solid #e8e8e8 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+/* En alt kırılım yazı boyutları */
+.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon .nav-submenu li a {
+    font-size: 13.5px !important;
+    color: #444444 !important;
+    padding: 5px 8px !important;
+    font-weight: 500 !important;
+}
+
+/* Akordeon için başlangıçta alt listeleri gizleme */
+.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li.has-sub .nav-submenu {
+    display: none;
+}
+
+/* Dinamik + ve - simgeleri */
+.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li.has-sub > a::after {
+    content: "+";
+    font-size: 16px;
+    font-weight: bold;
+    color: #ef7c00;
+}
+
+.newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li.submenu-open.has-sub > a::after {
+    content: "-";
+}
+
+/* PC Kapat Butonu Stili */
+.close-pc-mega-menu {
+    position: absolute !important;
+    right: 20px !important;
+    top: 12px !important;
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    padding: 6px 14px !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    transition: background 0.2s;
+}
+
+.close-pc-mega-menu:hover {
+    background: #ef7c00 !important;
 }
 
 .newHeaderNavigation:not(.mobileStyle) .menu-wrap {
