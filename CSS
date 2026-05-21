@@ -14863,21 +14863,41 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 #divTopProductSearch .searchform-wrapper #btnKelimeAra {
     background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347) !important;
 }
-/* ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER TASARIMI */
+/* ==========================================================================
+   ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER TASARIMI
+   ========================================================================== */
 .asaf-populer-kategoriler-block {
     width: 100%;
     margin: 40px auto;
     clear: both;
 }
-
-.asaf-pop-title-main {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 24px;
-    text-align: left;
+.asaf-pop-title-banner {
+    width: 100%;
+    height: 180px; /* Görselinizin orijinal yüksekliği */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px; /* Banner ile slider arasındaki dikey boşluk */
+    background-image: url('https://static.ticimax.cloud/53979/uploads/images/asaf-populer-kategoriler-blok/populer-kategoriler-banner-1180x180.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px; /* Kenarları fildişi kartlarınızla uyumlu yumuşatılmış oval yapı */
+    
+    /* Başlık yazısını görselin tam ortasında dikey ve yatay konumlandırmak için flex düzeni */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.asaf-pop-title-content {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a; /* Net siyah canlı başlık yazısı */
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+}
+  
 .asaf-pop-link {
     display: block;
     text-decoration: none;
@@ -14913,8 +14933,223 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin-top: 14px;
     text-transform: capitalize;
 }
+/* ASAF GASTRO - Özel Vitrin Banner Çalışması (Masaüstü ve Mobil Uyumlu) */
+
+/* Masaüstü Görünüm */
+.yaz-ekipmanlari-banner {
+    display: block !important;
+    float: none !important; 
+    clear: both !important;
+    width: 100%;
+    max-width: 1180px; 
+    margin: 20px auto !important;
+    background-image: url('https://static.ticimax.cloud/53979/uploads/images/vitrin-banner/yaz-ekipmanlari-banner-1180x180px.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 1180 / 180;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Bannerın üzerine gelindiğinde (Hover) hafif büyüme efekti */
+.yaz-ekipmanlari-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Telefon ve Tabletler İçin Mobil Görünüm (768px ve altı) */
+@media screen and (max-width: 768px) {
+    .yaz-ekipmanlari-banner {
+        /* Yeni yüklediğiniz 768x400 mobil görsel */
+        background-image: url('https://static.ticimax.cloud/53979/uploads/images/vitrin-banner/yaz-ekipmanlari-mobil-768x400.png'); 
+        aspect-ratio: 768 / 400; 
+        width: calc(100% - 20px) !important;
+        margin: 15px auto !important;
+    }
+}
+  
   .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon{ flex: 1 !important;}
  
   .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon .mega-menu-card--has-sub .nav-submenu .nav-submenu{ height: max-content !important; overflow: auto !important; position: relative !important; min-height: 108px;}
   .newHeaderNavigation:not(.mobileStyle) .menu-wrap .mega-menu-card--has-sub > .nav-submenu > .nav-item > a { font-weight: 800 !important;}
   .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon .mega-menu-card--has-sub .nav-submenu .nav-submenu li{ height: 36px;}
+}
+/* ======================================================= */
+/* ASAF GASTRO - 2. EL SAYFASI ÖZEL TASARIMI (GÜNCEL)      */
+/* ======================================================= */
+
+.asaf-2el-container {
+    font-family: 'Mulish', sans-serif;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+    color: #333;
+    box-sizing: border-box;
+    overflow: hidden; /* Taşımları engeller */
+}
+
+.asaf-2el-container * {
+    box-sizing: border-box;
+}
+
+/* Satır Düzeni (Görsel ve Metin Yan Yana) */
+.asaf-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.asaf-row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* Görsel Alanı */
+.asaf-col-img {
+    flex: 1 1 45%;
+    min-width: 300px;
+    text-align: center;
+}
+
+.asaf-col-img img {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+    aspect-ratio: 58 / 48;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Metin Alanı */
+.asaf-col-text {
+    flex: 1 1 45%;
+    min-width: 300px;
+}
+
+.asaf-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ef7c00; 
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.asaf-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Etiketler */
+.asaf-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.asaf-tag {
+    background: #fff7f0;
+    color: #ef7c00;
+    border: 1px solid #ef7c00;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 4'lü Şartlar Kart Grid Yapısı */
+.asaf-features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.asaf-feature-card {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #ef7c00;
+    transition: transform 0.3s ease;
+}
+
+.asaf-feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.asaf-feature-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #222;
+    font-weight: 700;
+}
+
+.asaf-feature-card p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* SEO Metin Kutuları */
+.asaf-seo-box {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 40px;
+}
+
+.asaf-seo-box::before {
+    content: "✓";
+    font-family: 'Mulish', sans-serif;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    color: #ef7c00;
+    font-weight: bold;
+}
+
+/* ======================================================= */
+/* MOBİL UYUMLULUK (Ticimax'i Ezecek !important kuralları) */
+/* ======================================================= */
+@media (max-width: 991px) {
+    .asaf-row, .asaf-row-reverse {
+        flex-direction: column !important;
+        gap: 20px !important;
+        margin-bottom: 50px !important;
+    }
+    .asaf-col-img, .asaf-col-text {
+        width: 100% !important;
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    .asaf-title {
+        font-size: 24px !important;
+        text-align: center !important;
+    }
+    .asaf-desc {
+        text-align: center !important;
+    }
+    .asaf-tags {
+        justify-content: center !important;
+    }
+    .asaf-features-grid {
+        grid-template-columns: 1fr !important; /* Mobilde kartlar alt alta gelsin */
+    }
+}
