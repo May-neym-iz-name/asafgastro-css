@@ -168,6 +168,208 @@ mobileMenu();
 $('.mycart').insertBefore('.welcome');
 $('.headerContent').prepend('<div class="SearchToggle svgIcon"><svg width="24" viewBox="0 0 488.4 488.4"> <path d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z"/> </svg></div>');
 $('.welcome').before('<a href="/Hesabim.aspx#/Favorilerim" class="HeaderFavori"><svg width="22" viewBox="0 0 471.701 471.701" fill="#ffffff"> <path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1 c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3 l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4 C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3 s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4 c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3 C444.801,187.101,434.001,213.101,414.401,232.701z"/> </svg><span></span></a>');
+function syncContentOverlay() {
+    var menuOpen = $('#headerNew .header .newHeaderNavigation:not(.mobileStyle)').hasClass('active');
+    var searchOpen = $('.searchContent').hasClass('active');
+    if (menuOpen || searchOpen) {
+        $('#divIcerik').addClass('hoverr');
+    } else {
+        $('#divIcerik').removeClass('hoverr');
+    }
+}
+
+function initDesktopMegaMenu() {
+    var $nav = $('#headerNew .header .newHeaderNavigation:not(.mobileStyle)');
+    var sidebarW = 280;
+
+    $nav.find('.newHeaderNavUl > li').each(function () {
+        if ($(this).find('.menu-wrap').length > 0) {
+            $(this).addClass('ulVar');
+        }
+    });
+
+    if ($nav.find('.desktopMenuClose').length === 0) {
+        $nav.find('.newHeaderNav').prepend(
+            '<button type="button" class="desktopMenuClose"><span class="desktopMenuClose-icon" aria-hidden="true">✕</span> Menüyü Kapat</button>'
+        );
+    }
+
+    function initMegaMenuCards() {
+        $nav.find('.menu-wrap .kolon > li').each(function () {
+            var $li = $(this);
+            var $link = $li.children('a.nav-item-link').first();
+            $li.addClass('mega-menu-card');
+            if ($li.find('> .nav-submenu').length) {
+                $li.addClass('mega-menu-card--has-sub');
+                if ($link.length && !$link.hasClass('mega-accordion-trigger')) {
+                    $link.addClass('mega-accordion-trigger');
+                    if ($link.find('.mega-accordion-toggle').length === 0) {
+                        var $chev = $link.find('> .mega-accordion-chevron').first().detach();
+                        var $toggle = $('<span class="mega-accordion-toggle" aria-label="Alt kategorileri aç/kapat"></span>');
+                        if ($chev.length) {
+                            $toggle.append($chev);
+                        } else {
+                            $toggle.append('<span class="mega-accordion-chevron" aria-hidden="true"></span>');
+                        }
+                        $link.append($toggle);
+                    }
+                }
+            } else {
+                $li.addClass('mega-menu-card--link');
+            }
+        });
+    }
+
+    initMegaMenuCards();
+
+    $nav.find('.newHeaderNavUl > li.ulVar > a').each(function () {
+        if ($(this).find('.kat-side-toggle').length === 0) {
+            $(this).append('<span class="kat-side-toggle" aria-label="Alt menüyü aç/kapat"></span>');
+        }
+    });
+
+    function openKatPanel($li) {
+        $nav.find('.newHeaderNavUl > li').removeClass('kat-open');
+        resetMegaMenuCards();
+        $li.addClass('kat-open');
+        $nav.addClass('kat-panel-open');
+        if (!$nav.hasClass('active')) {
+            openDesktopMegaMenu();
+        }
+        syncMegaPanelWidth();
+        setTimeout(syncMegaPanelWidth, 50);
+    }
+
+    function resetMegaMenuCards() {
+        $nav.find('.menu-wrap .kolon > li').removeClass('card-open');
+        $nav.find('.menu-wrap .kolon > li .nav-submenu').css('max-height', '');
+    }
+
+    function syncAccordionPanel($card, open) {
+        var $sub = $card.find('> .nav-submenu');
+        if (!$sub.length) {
+            return;
+        }
+        if (open) {
+            $sub.css('max-height', $sub[0].scrollHeight + 'px');
+        } else {
+            $sub.css('max-height', '0');
+        }
+    }
+
+    function syncMegaPanelWidth() {
+        $nav.find('.newHeaderNavUl > li .menu-wrap').css({ width: '', left: '' });
+        if (!$nav.hasClass('kat-panel-open')) {
+            return;
+        }
+        var $ref = $('#headerNew #wide-nav .headerContainer, #headerNew .MenuCenter, #headerNew .headerContent').first();
+        var navW = ($ref.length ? $ref.outerWidth() : 0) || $nav.outerWidth();
+        if (!navW) {
+            return;
+        }
+        var panelW = Math.max(navW - sidebarW, 320);
+        $nav.find('.newHeaderNavUl > li.kat-open .menu-wrap').css({
+            width: panelW + 'px',
+            left: sidebarW + 'px'
+        });
+    }
+
+    function closeDesktopMegaMenu() {
+        $nav.removeClass('active kat-panel-open');
+        $('.MenuCenter > div > div.katbtn').removeClass('active');
+        $nav.find('.newHeaderNavUl > li').removeClass('kat-open');
+        $nav.find('.newHeaderNavUl > li .menu-wrap').css({ width: '', left: '' });
+        resetMegaMenuCards();
+        syncContentOverlay();
+    }
+
+    function openDesktopMegaMenu() {
+        $nav.addClass('active');
+        $('.MenuCenter > div > div.katbtn').addClass('active');
+        syncContentOverlay();
+        setTimeout(syncMegaPanelWidth, 0);
+    }
+
+    $('body').on('click', '.MenuCenter > div > div.katbtn', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if ($nav.hasClass('active')) {
+            closeDesktopMegaMenu();
+        } else {
+            $nav.find('.newHeaderNavUl > li').removeClass('kat-open');
+            $nav.removeClass('kat-panel-open');
+            resetMegaMenuCards();
+            openDesktopMegaMenu();
+        }
+    });
+
+    function closeKatPanel() {
+        $nav.find('.newHeaderNavUl > li').removeClass('kat-open');
+        $nav.removeClass('kat-panel-open');
+        resetMegaMenuCards();
+        syncMegaPanelWidth();
+    }
+
+    $('body').on('mouseenter', '#headerNew .header .newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li.ulVar', function () {
+        if (!$nav.hasClass('active')) {
+            return;
+        }
+        openKatPanel($(this));
+    });
+
+    $('body').on('mouseleave', '#headerNew .header .newHeaderNavigation:not(.mobileStyle)', function () {
+        if (!$nav.hasClass('active')) {
+            return;
+        }
+        closeKatPanel();
+    });
+
+    function toggleMegaCard($card) {
+        if ($card.hasClass('card-open')) {
+            $card.removeClass('card-open');
+            syncAccordionPanel($card, false);
+        } else {
+            $card.closest('.menu-wrap').find('.kolon > li.card-open').each(function () {
+                var $open = $(this);
+                $open.removeClass('card-open');
+                syncAccordionPanel($open, false);
+            });
+            $card.addClass('card-open');
+            syncAccordionPanel($card, true);
+        }
+    }
+
+    $('body').on('click', '#headerNew .header .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li.mega-menu-card--has-sub .mega-accordion-toggle', function (e) {
+        if (!$nav.hasClass('kat-panel-open')) {
+            return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMegaCard($(this).closest('li'));
+    });
+
+    $(window).on('resize.megaMenuDesktop', function () {
+        if ($nav.hasClass('active')) {
+            syncMegaPanelWidth();
+            $nav.find('.menu-wrap .kolon > li.card-open').each(function () {
+                syncAccordionPanel($(this), true);
+            });
+        }
+    });
+
+    $('body').on('click', '.desktopMenuClose', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeDesktopMegaMenu();
+    });
+
+    $('body').on('click', function (e) {
+        if (!$(e.target).closest('.MenuCenter > div > div.katbtn, #headerNew .header .newHeaderNavigation:not(.mobileStyle)').length) {
+            closeDesktopMegaMenu();
+        }
+    });
+}
+
 function GlobalIslemler() {
 
     $('[title]').removeAttr('title');
@@ -175,19 +377,7 @@ function GlobalIslemler() {
 
 
     if (windowidth > 1099) {
-
-
-
-        $('body').on('mouseenter', '.MenuCenter > div > div.katbtn', function () {
-            $('#headerNew .header .newHeaderNavigation:not(.mobileStyle)').addClass('active');
-            $(this).addClass('active');
-            $('#divIcerik').addClass('hoverr');
-        });
-
-        $('body').on('mouseleave', '#headerNew .header .newHeaderNavigation', function () {
-            $(this).removeClass('active');
-            $('#divIcerik').removeClass('hoverr');
-        });
+        initDesktopMegaMenu();
     }
 
     if ($("#headerNew .header .newHeaderNavigation:not(.mobileStyle) .newHeaderNavUl > li > a .upTagText img").length == 0) {
@@ -218,13 +408,13 @@ function GlobalIslemler() {
         });
         $("body").on("click", ".SearchToggle", function () {
             $('.searchContent').addClass('active');
-            $('#divIcerik').addClass('hoverr');
+            syncContentOverlay();
         });
         $("body").on("click", function (evt) {
             if (!$(evt.target).is('.SearchToggle,.SearchToggle *,.searchContent,.searchContent *')) {
                 $('.searchContent').removeClass('active');
                 $('.SearchToggle').removeClass('active');
-                $('#divIcerik').removeClass('hoverr');
+                syncContentOverlay();
             }
         });
     }
@@ -1001,3 +1191,23 @@ function sayfaTasarim() {
         });
     }
 }
+/* ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER */
+$(document).ready(function() {
+    if ($('.asaf-pop-carousel').length > 0) {
+        $('.asaf-pop-carousel').owlCarousel({
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            loop: true,
+            margin: 20,
+            nav: true, 
+            navClass: ['ProductListprev', 'ProductListnext'], 
+            dots: true,
+            responsive: {
+                0: { items: 2, margin: 10 },
+                600: { items: 3 },
+                1024: { items: 5 }
+            }
+        });
+    }
+});
