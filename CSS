@@ -30026,19 +30026,18 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin: 40px auto;
     clear: both;
 }
+
 .asaf-pop-title-banner {
     width: 100%;
-    height: 180px; /* Görselinizin orijinal yüksekliği */
+    height: 180px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 20px; /* Banner ile slider arasındaki dikey boşluk */
+    margin-bottom: 20px;
     background-image: url('https://static.ticimax.cloud/53979/uploads/images/asaf-populer-kategoriler-blok/populer-kategoriler-banner-1180x180-re.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 16px; /* Kenarları fildişi kartlarınızla uyumlu yumuşatılmış oval yapı */
-    
-    /* Başlık yazısını görselin tam ortasında dikey ve yatay konumlandırmak için flex düzeni */
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30047,7 +30046,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 .asaf-pop-title-content {
     font-size: 26px;
     font-weight: 700;
-    color: #1a1a1a; /* Net siyah canlı başlık yazısı */
+    color: #1a1a1a;
     margin: 0;
     padding: 0 20px;
     text-align: center;
@@ -30059,7 +30058,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     text-align: center;
 }
 
-/* Oval Köşeli Hafif Turuncu Arka Planlı Kart */
 .asaf-pop-card {
     background-color: #fff7f2;
     border-radius: 16px;
@@ -30088,9 +30086,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin-top: 14px;
     text-transform: capitalize;
 }
-/* ASAF GASTRO - Özel Vitrin Banner Çalışması (Masaüstü ve Mobil Uyumlu) */
 
-/* Masaüstü Görünüm */
 .yaz-ekipmanlari-banner {
     display: block !important;
     float: none !important; 
@@ -30108,16 +30104,13 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Bannerın üzerine gelindiğinde (Hover) hafif büyüme efekti */
 .yaz-ekipmanlari-banner:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Telefon ve Tabletler İçin Mobil Görünüm (768px ve altı) */
 @media screen and (max-width: 768px) {
     .yaz-ekipmanlari-banner {
-        /* Yeni yüklediğiniz 768x400 mobil görsel */
         background-image: url('https://static.ticimax.cloud/53979/uploads/images/vitrin-banner/yaz-ekipmanlari-mobil-768x400.png'); 
         aspect-ratio: 768 / 400; 
         width: calc(100% - 20px) !important;
@@ -30142,14 +30135,13 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     padding: 0 15px;
     color: #333;
     box-sizing: border-box;
-    overflow: hidden; /* Taşımları engeller */
+    overflow: hidden;
 }
 
 .asaf-2el-container * {
     box-sizing: border-box;
 }
 
-/* Satır Düzeni (Görsel ve Metin Yan Yana) */
 .asaf-row {
     display: flex;
     flex-wrap: wrap;
@@ -30162,7 +30154,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     flex-direction: row-reverse;
 }
 
-/* Görsel Alanı */
 .asaf-col-img {
     flex: 1 1 45%;
     min-width: 300px;
@@ -30181,7 +30172,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin: 0 auto;
 }
 
-/* Metin Alanı */
 .asaf-col-text {
     flex: 1 1 45%;
     min-width: 300px;
@@ -30203,7 +30193,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin-bottom: 20px;
 }
 
-/* Etiketler */
 .asaf-tags {
     display: flex;
     flex-wrap: wrap;
@@ -30221,7 +30210,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     font-weight: 600;
 }
 
-/* 4'lü Şartlar Kart Grid Yapısı */
 .asaf-features-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -30256,7 +30244,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     line-height: 1.6;
 }
 
-/* SEO Metin Kutuları */
 .asaf-seo-box {
     background: #fff;
     border: 1px solid #eee;
@@ -30280,9 +30267,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     font-weight: bold;
 }
 
-/* ======================================================= */
-/* MOBİL UYUMLULUK (Ticimax'i Ezecek !important kuralları) */
-/* ======================================================= */
 @media (max-width: 991px) {
     .asaf-row, .asaf-row-reverse {
         flex-direction: column !important;
@@ -30305,6 +30289,162 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
         justify-content: center !important;
     }
     .asaf-features-grid {
-        grid-template-columns: 1fr !important; /* Mobilde kartlar alt alta gelsin */
+        grid-template-columns: 1fr !important;
+    }
+}
+/* ==========================================================================
+   ASAF GASTRO - SLIDER BLOK TASARIMI V1
+   ========================================================================== */
+.asaf-slider-blok {
+    width: 100% !important;
+    margin: 10px auto 40px auto !important;
+    clear: both !important;
+    float: left !important;
+}
+
+.asaf-grid-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.asaf-grid-col-left {
+    width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.asaf-grid-col-right {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.asaf-slider-card { height: 340px; position: relative; }
+.asaf-medium-banner { height: 180px; position: relative; }
+.asaf-large-banner { height: 260px; position: relative; }
+
+.asaf-grid-card {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: 1px solid #eeeff0 !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.asaf-grid-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1) !important;
+    border-color: #ef7c00 !important;
+}
+
+.asaf-slider-card a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.asaf-grid-card:not(.asaf-slider-card) a {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 99 !important;
+    display: block !important;
+}
+
+.asaf-grid-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.asaf-slider-blok .owl-dots,
+.asaf-grid-slider .owl-dots {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+}
+
+@media screen and (max-width: 1041px) {
+    .asaf-slider-blok {
+        margin: -15px auto 25px auto !important; 
+    }
+
+    .asaf-grid-container {
+        padding: 0 10px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+    }
+    
+    .asaf-grid-col-left, 
+    .asaf-grid-col-right {
+        display: contents !important;
+    }
+
+    .asaf-grid-card *, 
+    .asaf-grid-card span, 
+    .asaf-grid-card p, 
+    .asaf-grid-card h3 {
+        font-size: 0 !important;
+        color: transparent !important;
+    }
+    
+    .asaf-grid-card:not(.asaf-slider-card) a {
+        position: absolute !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 99 !important;
+    }
+    
+    .asaf-grid-card img {
+        display: block !important;
+    }
+
+    .asaf-slider-card {
+        order: 1 !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 680 / 340 !important;
+        border-radius: 12px !important;
+    }
+
+    .asaf-large-banner {
+        order: 2 !important;
+        width: calc(50% - 5px) !important;
+        height: auto !important;
+        aspect-ratio: 480 / 240 !important;
+        border-radius: 12px !important;
+    }
+
+    .asaf-medium-banner {
+        order: 3 !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 680 / 180 !important;
+        border-radius: 12px !important;
+        margin-top: 5px !important;
+    }
+
+    .asaf-grid-card img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; 
     }
 }
