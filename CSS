@@ -14839,16 +14839,67 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     text-align: center;
 }
 
+/* --- ASAF GASTRO: Popüler Kategoriler Slider --- */
+/* Slider Yüklenmeden Önceki Dağınık Görünümü Engeller (FOUC) */
+.katSliderBlock { visibility: hidden; width: 100%; float: left; position: relative; }
+.katSliderBlock .owl-loaded { visibility: visible; }
+
+/* Liste ve Flex Ayarları */
 .katSliderBlock ul {
     list-style-type: none !important;
-    margin-block-start: 0 !important;
-    padding-inline-start: 0 !important;
-    unicode-bidi: isolate;
+    margin: 0 !important;
+    padding: 0 !important;
 }
-
 .katSliderBlock .owl-item li {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Görsel Çerçeve ve Gradyan Çember Efekti SADECE Burası İçin */
+.katSliderBlock ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    background: transparent;
+}
+
+.katSliderBlock ul li a img {
+    width: 110px;
+    height: 110px;
+    padding: 4px;
+    border-radius: 100%;
+    /* Çemberin arka plan gradyanı */
+    background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347);
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    background-origin: border-box;
+    transition: background .35s ease, box-shadow .35s ease;
+    box-sizing: border-box;
+    object-fit: cover;
+}
+
+/* Çember Hover Efekti */
+.katSliderBlock ul li:hover a img {
+    background: linear-gradient(45deg, #ffc9a6, #ffa577, #ff7459);
+    box-shadow: 0 0 8px rgba(255, 120, 70, 0.4);
+}
+
+/* Kategori Metni Tasarımı */
+.katSliderBlock ul li a span {
+    margin-top: 10px;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    transition: color 0.2s ease;
+}
+
+.katSliderBlock ul li:hover a span {
+    color: var(--theme-color); /* Hover durumunda yazıyı turuncu yapar */
 }
 
 .yg-topbar {
@@ -29993,19 +30044,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 .katItem span {
     text-align: center;
 }
-
-.katSliderBlock ul {
-    list-style-type: none !important;
-    margin-block-start: 0 !important;
-    padding-inline-start: 0 !important;
-    unicode-bidi: isolate;
-}
-
-.katSliderBlock .owl-item li {
-    display: flex;
-    flex-direction: column;
-}
-
 .yg-topbar {
     background: #dbdbdb;
     color: #111;
