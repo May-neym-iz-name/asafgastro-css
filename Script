@@ -1,0 +1,195 @@
+<style>
+
+  
+
+  .katSliderBlock {
+
+    visibility: hidden;
+
+}
+
+
+
+.katSliderBlock .owl-loaded {
+
+    visibility: visible;
+
+}
+
+
+
+  #mainHolder_divDesign #ticimaxTabContent {
+
+    float: left;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347);
+
+    border-radius: 10px;
+
+}
+
+#mainHolder_divDesign #ticimaxTabContent .productItem{                           
+
+
+
+background: #fff;
+
+                                }
+
+#mainHolder_divDesign .ticimaxTabHead li a {
+
+   
+
+background-color: #ffffff;
+
+                                }
+
+                                
+
+#mainHolder_divDesign #ticimaxTabContent {
+
+
+
+padding: 20px;
+
+}
+
+                                
+
+                                @media (max-width:767px) {
+
+      #mainHolder_divDesign #ticimaxTabContent {
+
+    padding: 5px !important;
+
+}
+
+    #mainHolder_divDesign .ticimaxTabHead {
+
+        padding-top: 14px !important;
+
+    }
+
+    
+
+}
+
+                                
+
+                                </style>
+
+                                
+
+                                <style>
+
+  /* LI kapsayıcısı ikon item */
+
+.katSliderBlock ul li {
+
+    text-align: center;
+
+}
+
+
+
+/* IMG etrafında gradient border simülasyonu */
+
+.katSliderBlock ul li a img {
+
+    width: 110px;
+
+    height: 110px;
+
+    padding: 4px;
+
+    border-radius: 100%;
+
+    background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347);
+
+    transition: background .35s ease, box-shadow .35s ease;
+
+    box-sizing: border-box;
+
+}
+
+
+
+/* Hover – sadece border hafif parlar */
+
+.katSliderBlock ul li:hover a img {
+
+    background: linear-gradient(45deg, #ffc9a6, #ffa577, #ff7459);
+
+    box-shadow: 0 0 6px rgba(255, 120, 70, 0.35);
+
+}
+
+
+
+/* İç circle efekti – resme arka plan vermek */
+
+.katSliderBlock ul li a img {
+
+    background-clip: padding-box;
+
+    border: 4px solid transparent;
+
+    background-origin: border-box;
+
+}
+
+
+
+/* İç circle (arka plan beyaz görünümü) */
+
+.katSliderBlock ul li a {
+
+    display: block;
+
+    background: #fff;
+
+    border-radius: 100%;
+
+    padding: 0;
+
+}
+
+
+
+/* Span yazı */
+
+.katSliderBlock ul li a span {
+
+    margin-top: 8px;
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    /* white-space: nowrap; */
+
+    /* overflow: hidden; */
+
+    /* text-overflow: ellipsis; */
+
+    /* width: 110px; */
+
+    text-align: center;
+
+}
+
+
+
+
+
+.katSliderBlock { float: left; width: 100%; position: relative; } 
+
+</style>
