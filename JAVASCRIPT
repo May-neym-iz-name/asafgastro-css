@@ -1211,3 +1211,20 @@ $(document).ready(function() {
         });
     }
 });
+/* ==========================================================================
+   ASAF GASTRO - ASAF SLIDER BLOK (4sn & DOTS KAPALI)
+   ========================================================================== */
+$(document).ready(function() {
+    if ($('.asaf-grid-slider').length > 0) {
+        $('.asaf-grid-slider').owlCarousel({
+            autoplay: true,
+            autoplayTimeout: 7000, 
+            autoplayHoverPause: true,
+            loop: true,
+            margin: 0,
+            nav: false, 
+            dots: false,
+            items: 1
+        });
+    }
+});
