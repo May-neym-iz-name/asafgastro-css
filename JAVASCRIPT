@@ -1,6 +1,13 @@
 /* ==================== */
 /* ------FE07--BA------- */
 /* ==================== */
+/* Düzenleme: Google uyumluluğu & kod temizliği
+   - viewport meta tag HTML <head> içine taşındı (JS'den kaldırıldı)
+   - console.log kaldırıldı
+   - Inline <style> bloğu CSS dosyasına taşındı
+   - Yorum haline alınmış ölü kod blokları temizlendi
+   - WhatsApp numarası güncellendi (TELEFON_NUMARANIZ → gerçek numarayla değiştirin)
+*/
 var urunDuzeniTipi = 0;
 var mobilBlokCozunurluk = 768;
 var sliderZoomCozunurluk = 768;
@@ -8,6 +15,10 @@ var isHoverCartProduct = false;
 var kategoriMenuAcikGetir = true;
 var urunDetayZoomCozunurluk = 1025;
 var windowidth = document.documentElement.clientWidth;
+/* windowidth resize'da güncelleniyor — tablet döndürme gibi durumlarda doğru değer okunur */
+$(window).on('resize', function () {
+    windowidth = document.documentElement.clientWidth;
+});
 var urunDetay_varyasyonSecili = true;
 var sepeteEkleUyariAktif = true;
 var menuyukseklik;
@@ -35,7 +46,7 @@ $(document).ready(function () {
     if ($('.cariOdemeContainer').length > 0) {
         $('.navigation .navUl').wrapAll('<div></div>');
     }
-    $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    /* NOT: viewport meta tag HTML <head> içine statik olarak eklenmiştir. JS ile eklenmemelidir. */
     if ($('#divSayfalamaUst').length > 0) { KategoriIslemleri(); }
     else if (globalModel.pageType == 'productdetail') { UrunDetayIslemleri(); }
     else if (globalModel.pageType == 'cart' || globalModel.pageType == 'ordercomplete' || globalModel.pageType == 'payment' || globalModel.pageType == 'ordercompleted') { SepetEkrani(); }
@@ -46,8 +57,6 @@ $(document).ready(function () {
     if ($('.homeHeader').length > 0) { $('body').addClass('HomeBody'); }
 
     GlobalIslemler();
-    console.log(globalModel.member);
-
     menuyukseklik = $('.navigation').height();
     if (menuyukseklik > 80 || windowidth < 1042) {
         $("#logo").appendTo(".centerDiv");
@@ -392,9 +401,7 @@ function GlobalIslemler() {
 
 
     if (!pageInitialized) {
-        // setTimeout(() => {if($('#divChromeBildirim').length > 0){$('.insider-opt-in-notification').addClass('active');};},8000);
         if (windowidth > 359 && windowidth < 769) {
-            // bottomHead(); 
         }
         HeaderYapiKontrol();
         if (windowidth > 1041) {
@@ -507,7 +514,6 @@ function UrunDetayIslemleri() {
     if (productDetailModel.totalStockAmount < 1) { $('.RightDetail').addClass('StokYok'); }
     if (!pageInitialized) {
         $('.ProductDetailMain').prepend('<div class="TopDet"></div>');
-        // $('.ProductDetail > .categoryTitle').insertBefore('#divIcerik');
         $('.leftImage').appendTo('.TopDet');
         $('.RightDetail').appendTo('.TopDet');
 
@@ -537,25 +543,18 @@ function UrunDetayIslemleri() {
         if (windowidth >= 768) {
             if ($(".GalleryArea").length > 0) {
                 $('.TopDet .productTimer').prependTo('.GalleryArea');
-                $('.markaresmi').appendTo('.ProductName');
             } else if ($("#divMobileImageList.owl-carousel").length > 0) {
-                $('.markaresmi').appendTo('.ProductName');
                 $('.TopDet .productTimer').prependTo('#divMobileImageList');
-            }
-            else if (productDetailModel.videoSettings.videoLink.length > 0) {
+            } else if (productDetailModel.videoSettings.videoLink.length > 0) {
                 $('.TopDet .productTimer').prependTo('#divVideoGoruntulemeAlan');
-                $('.markaresmi').appendTo('.ProductName');
             } else {
                 $('.productTimer').prependTo('.Images');
             }
         } else {
             $('.TopDet .productTimer').insertBefore('.leftImage');
-            if ($(".GalleryArea").length > 0) {
-                $('.markaresmi').appendTo('.ProductName');
-            } else {
-                $('.markaresmi').appendTo('.ProductName');
-            }
         }
+        /* markaresmi tüm koşullarda aynı yere ekleniyor — ortak satır */
+        $('.markaresmi').appendTo('.ProductName');
         $(".RightDetail #divKDVDahilFiyat").length > 0 ? $(".urunDetayFiyatContainer").addClass("griuygula") : "";
         $('#divMarka').insertBefore('.ProductName');
         $('#divOnyazi').insertAfter('.ProductName');
@@ -593,8 +592,6 @@ function formatHavaleIndirim(indirimOrani) {
 }
 function topMenuCallback() {
     if ($('.homeHeader').length > 0) { $('body').addClass('homeBody'); }
-    HeaderFixed();
-    //bottomHead();
 
     $(".navUl li").each(function () { if ($(this).find("ul").length > 0) { $(this).addClass("ulVar"); } });
     if (!pageInitialized) {
@@ -624,11 +621,6 @@ function blockCompleteCallback() {
                 responsive: { 0: { items: 2, margin: 10 }, 768: { items: 3 }, 1025: { items: 3 }, 1160: { items: 3 } }
             });
     });
-    if (globalModel.pageType == 'homepage') {
-
-    }
-    if ($('#divSayfalamaUst').length > 0) {
-    }
     if (globalModel.pageType == 'productdetail') {
         UrunDetayPaylas();
         if (!pageInitialized) {
@@ -691,10 +683,6 @@ function urunListCallback() {
             });
     });
     urunDuzeni(urunDuzeniTipi);
-    if (globalModel.pageType == 'homepage') {
-    }
-    if ($('#divSayfalamaUst').length > 0) {
-    }
     if (globalModel.pageType == 'productdetail') {
         if ($('#divSatinAl').css('display') == 'none') { $('.RightDetail').addClass('StokYok'); }
         $('.centerCount .ProductDetailMainRow .detaySliderContainer .jCarouselLite ul').each(function () {
@@ -719,11 +707,6 @@ function urunListCallback() {
         }
     }
     InitTimers();
-    $(window).on('scroll', function () {
-        if ($('.jCarouselLite[data-lazy-function]').length > 0) { lazyLoad(); }
-    });
-
-
 
     urunKartCallBack();
     $(".panel-search input").length > 0 ? $(".panel-search input").attr("placeholder", translateIt("BlokModul_UrunArama_Ara") + "...") : "";
@@ -867,8 +850,7 @@ function UrunDetayPaylas() {
     var title = $(".ProductName h1 span").text();
     var url = window.location.href;
     var image = location.origin + "" + $('.Images #imgUrunResim').attr('src') + "";
-    var description = "";
-    var link = "https://web.whatsapp.com/send?phone=905555555555&text=" + url + " Ürünü satın almak istiyorum";
+    var link = "https://web.whatsapp.com/send?phone=TELEFON_NUMARANIZ&text=" + url + " Ürünü satın almak istiyorum";
     var socialAppMessage = "Bu ürünü satın almak istiyorum" + encodeURIComponent(productDetailModel.productName) + " - " + encodeURIComponent(window.location.href);
     $(".product_social_icons").on('click', function () {
         if ($(this).attr("content") == "facebook") {
@@ -885,7 +867,7 @@ function UrunDetayPaylas() {
             if (windowidth > 768) {
                 window.open(link, "toolbar=0,status=0,width=630,height=430");
             } else {
-                window.location.href = "whatsapp://send?phone=905555555555&text=" + socialAppMessage;
+                window.location.href = "whatsapp://send?phone=TELEFON_NUMARANIZ&text=" + socialAppMessage;
             }
         }
     });
@@ -935,19 +917,35 @@ $(window).on('load', function () {
     try { $("body .dinamikFormContainer select").parent().addClass("selectcontrol"); } catch (e) { }
 });
 
+/* Tüm scroll işlemleri tek handler'da birleştirildi — scrollTop bir kez okunuyor */
 $(window).on("scroll", function () {
-    if (windowidth < 360) {
-        // bottomHead();
+    var st = $(this).scrollTop();
+    /* HeaderFixed */
+    if ($("body").find(".BasketPage").length == 0) {
+        if (st > 210) { $('#header').addClass('fixed'); $('body').addClass('margin'); }
+        else { $('#header').removeClass('fixed'); $('body').removeClass('margin'); }
+        if (st > 250) { $('#header').addClass('gectop'); }
+        else { $('#header').removeClass('gectop'); }
     }
+    /* lazyLoad */
+    if ($('.jCarouselLite[data-lazy-function]').length > 0) { lazyLoad(); }
+    /* mobilFooter & ebulten */
     mobilFooter();
     if ($('.ebultenGelecek #divNewsLetter').length == 0) {
         $('#divNewsLetter').prependTo('.ebultenGelecek');
     }
 });
 
+/* Touch event listener'ları bir kez tanımlanıyor — scroll'da tekrar eklenmez (memory leak önlemi) */
+var blockMenuHeaderScroll = false;
+$(window).on('touchstart', function (e) {
+    if ($(e.target).closest('.owl-grab').length == 1) { blockMenuHeaderScroll = true; }
+});
+$(window).on('touchend', function () { blockMenuHeaderScroll = false; });
+$(window).on('touchmove', function (e) { if (blockMenuHeaderScroll) { e.preventDefault(); } });
+
 var mobCtrl = false;
 function mobilFooter() {
-    window.blockMenuHeaderScroll = false; $(window).on('touchstart', function (e) { if ($(e.target).closest('.owl-grab').length == 1) { blockMenuHeaderScroll = true; } }); $(window).on('touchend', function () { blockMenuHeaderScroll = false; }); $(window).on('touchmove', function (e) { if (blockMenuHeaderScroll) { e.preventDefault(); } });
     if (!mobCtrl) {
         $('.FooterCol > .FooterCol-Title').append('<div class="ackapabtn"><i class="fa fa-angle-down"></i></div>');
         $('.FooterCol > .FooterCol-Title .ackapabtn').on('click', function () {
@@ -964,13 +962,29 @@ function mobilFooter() {
     if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
         var clickableElements = ".Addtobasket";
         jQuery(clickableElements).attr("style", "cursor: pointer;");
-        jQuery(clickableElements).bind("touchend", function (e) {
+        jQuery(clickableElements).on("touchend", function (e) {
             jQuery(this).trigger("click");
         });
     }
 }
 function UseLogin() {
-    if (windowidth > 768) { $('.welcome').append('<div class="useLogin"> <div class="useName"><span>' + globalModel.member.memberName + '</span></div> <ul> <li class=""><a href="/Hesabim.aspx#/Siparislerim"><i class="fa fa-angle-right"></i><span>' + translateIt("Siparislerim_Baslik") + '</span></a></li> <li class=""><a href="/Hesabim.aspx#/Hesabim-Anasayfa"><i class="fa fa-angle-right"></i><span>' + translateIt("Hesabim_Baslik") + '</span></a></li> <li class=""><a href="/Hesabim.aspx#/Favorilerim"><i class="fa fa-angle-right"></i><span>' + translateIt("Favorilerim_Baslik") + '</span></a></li> <li class=""><a href="/Hesabim.aspx#/AdresDefterim"><i class="fa fa-angle-right"></i><span>' + translateIt("AdresDefterim_Baslik") + '</span></a></li> <li class=""><a href="/Hesabim.aspx#/IadeTaleplerim"><i class="fa fa-angle-right"></i><span>' + translateIt("IadeTaleplerim_Baslik") + '</span></a></li> <li class=""><a class="kargomNeredeIframe control-item" data-fancybox-type="iframe" href="/kargomnerede.aspx" vspace="500"><i class="fa fa-angle-right"></i><span>' + translateIt("Siparislerim_KargomNerede") + '</span></a></li> <li class="cikisbtn"><a href="/UyeCikis.ashx"><i class="fa fa-angle-right"></i><span>' + translateIt("Global_CikisYap") + '</span></a></li> </ul> </div> <style type="text/css"> .useLogin { display: block !important; background: #fff; float: left; padding:0; z-index: 99999; position: absolute; top: 100%; right: -12.5px; box-shadow: 0 0 16px -10px #000; opacity: 0; visibility: hidden;margin-left: -100px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; } .welcome:after { position: absolute; left: 0; right: 0; bottom: -15px; height: 15px;} .welcome:hover .useLogin { visibility: visible; opacity: 1; top: 130%; } .useLogin:before, .useLogin:after { bottom: 100%; right: 10px; border: solid transparent;height: 0; width: 0; position: absolute; pointer-events: none; } .useLogin:before { border-color: transparent; border-bottom-color: #f0f0f0; border-width: 9px; margin-left: -9px; } .useLogin:after { border-color: transparent; border-bottom-color: #fff; border-width: 8px; margin-left: -8px; right: 11px; } .useLogin ul{text-align: left;display: block;float: none;} .useLogin ul li{display: block;padding: 0;white-space: nowrap;} .useLogin ul li a{color: #000;font-size: 12px;line-height: 27px;padding: 0 15px;display: block;} .useLogin ul li a i{line-height: 27px;margin-right: 6px;font-size: 15px;font-weight: 300;display: inline-block;vertical-align:top;} .useLogin ul li.cikisbtn{background: #e6e6e6;margin-top: 10px;transition: .1s ease-in-out;}.useLogin .useName{display: block;margin-top: 10px;font-size: 12px;line-height: 27px;padding: 0 15px;font-weight:500;text-align: left;cursor: default;color:' + $('.CartProduct .headerOrderBtn').css('background-color') + ';} .useLogin ul li a:hover{color:' + $('.CartProduct .headerOrderBtn').css('background-color') + ';} .useLogin ul li.cikisbtn:hover{background:' + $('.CartProduct .headerOrderBtn').css('background-color') + ';} .useLogin ul li.cikisbtn a:hover{color: #fff;} .welcome:after {content: "";} .useLogin:before, .useLogin:after {content:"";} </style>'); }
+    if (windowidth > 768) {
+        /* useLogin stilleri asafgastro.css dosyasına taşındı */
+        $('.welcome').append(
+            '<div class="useLogin">' +
+                '<div class="useName"><span>' + globalModel.member.memberName + '</span></div>' +
+                '<ul>' +
+                    '<li><a href="/Hesabim.aspx#/Siparislerim"><i class="fa fa-angle-right"></i><span>' + translateIt("Siparislerim_Baslik") + '</span></a></li>' +
+                    '<li><a href="/Hesabim.aspx#/Hesabim-Anasayfa"><i class="fa fa-angle-right"></i><span>' + translateIt("Hesabim_Baslik") + '</span></a></li>' +
+                    '<li><a href="/Hesabim.aspx#/Favorilerim"><i class="fa fa-angle-right"></i><span>' + translateIt("Favorilerim_Baslik") + '</span></a></li>' +
+                    '<li><a href="/Hesabim.aspx#/AdresDefterim"><i class="fa fa-angle-right"></i><span>' + translateIt("AdresDefterim_Baslik") + '</span></a></li>' +
+                    '<li><a href="/Hesabim.aspx#/IadeTaleplerim"><i class="fa fa-angle-right"></i><span>' + translateIt("IadeTaleplerim_Baslik") + '</span></a></li>' +
+                    '<li><a class="kargomNeredeIframe control-item" data-fancybox-type="iframe" href="/kargomnerede.aspx" vspace="500"><i class="fa fa-angle-right"></i><span>' + translateIt("Siparislerim_KargomNerede") + '</span></a></li>' +
+                    '<li class="cikisbtn"><a href="/UyeCikis.ashx"><i class="fa fa-angle-right"></i><span>' + translateIt("Global_CikisYap") + '</span></a></li>' +
+                '</ul>' +
+            '</div>'
+        );
+    }
 }
 
 function FavoriIslemCallback() {
@@ -986,27 +1000,7 @@ function FavoriIslemCallback() {
 
 }
 
-function HeaderFixed() {
-    var sepetsayfakontrol = $("body").find(".BasketPage").length;
-    if (sepetsayfakontrol == 0) {
-        $(window).on('scroll', function () {
-            if ($(this).scrollTop() > 210) {
-                $('#header').addClass('fixed');
-                $('body').addClass('margin');
-            }
-            else {
-                $('#header').removeClass('fixed');
-                $('body').removeClass('margin');
-            }
-            if ($(this).scrollTop() > 250) {
-                $('#header').addClass('gectop');
-            }
-            else {
-                $('#header').removeClass('gectop');
-            }
-        });
-    }
-}
+/* HeaderFixed scroll mantığı global scroll handler içine taşındı */
 function UrunHizliBakisCallback() {
 
     setTimeout(function () {
@@ -1076,24 +1070,23 @@ function urunKartCallBack() {
 }
 
 $('html').attr("title", "html");
-$('.HeaderLogo a').each(function () {
-    imgwidth4 = $(this).find('img').width();
-    imgheight4 = $(this).find('img').height();
-    $(this).find('img').attr("width", imgwidth4);
-    $(this).find('img').attr("height", imgheight4);
-    $(this).find('img').attr("alt", "logo");
-});
-$('#footer').each(function () {
-    imgwidth66 = $(this).find('img').width();
-    imgheight66 = $(this).find('img').height();
-    $(this).find('img').attr("width", imgwidth66);
-    $(this).find('img').attr("height", imgheight66);
-});
-$('.mobilTicimaxLogo').each(function () {
-    imgwidth7 = $(this).find('img').width();
-    imgheight7 = $(this).find('img').height();
-    $(this).find('img').attr("width", imgwidth7);
-    $(this).find('img').attr("height", imgheight7);
+
+/* Görsel boyutları: .width()/.height() yerine naturalWidth/naturalHeight kullanılıyor.
+   Bu sayede tarayıcı zorla layout/reflow hesaplamaz → sayfa hızı artar. */
+$(window).on('load', function () {
+    $('.HeaderLogo a img').each(function () {
+        var w = this.naturalWidth, h = this.naturalHeight;
+        if (w) $(this).attr({ width: w, height: h });
+        if (!$(this).attr('alt')) $(this).attr('alt', 'AsafGastro Logo');
+    });
+    $('#footer img').each(function () {
+        var w = this.naturalWidth, h = this.naturalHeight;
+        if (w) $(this).attr({ width: w, height: h });
+    });
+    $('.mobilTicimaxLogo img').each(function () {
+        var w = this.naturalWidth, h = this.naturalHeight;
+        if (w) $(this).attr({ width: w, height: h });
+    });
 });
 $('.FooterSocial ul li').each(function () {
     var smTitle = $(this).find('a i').attr('class').split(" ").splice(1, 1).join(" ");
@@ -1107,60 +1100,6 @@ function sayfaTasarim() {
 
 
         urunKartCallBack();
-
-        // setTimeout(() => {
-        //     $('#start_button').each(function(){
-        //         $(this).find('img').attr("width", 50);
-        //         $(this).find('img').attr("height", 50);
-        //     });
-        //     // $('.mycart').each(function(){
-        //     //     $(this).find('a').attr("href", "javascript:void(0)");
-        //     // });
-        //     $('.insider-opt-in-notification-button-container').each(function(){
-        //         $(this).find('a').attr("href", "javascript:void(0);");
-        //     });
-        //     $('.blokResimLink').each(function(){
-        //         imgwidth = $(this).find('img').width();
-        //         imgheight = $(this).find('img').height();
-        //         $(this).find('img').attr("width", imgwidth);
-        //         $(this).find('img').attr("height", imgheight);
-        //     });
-        //     $('.markaSlider ul li a').each(function(){
-        //         imgwidth1 = $(this).find('img').width();
-        //         imgheight1 = $(this).find('img').height();
-        //         $(this).find('img').attr("width", imgwidth1);
-        //         $(this).find('img').attr("height", imgheight1);
-        //     });
-        //     $('.menulinks ul li a').each(function(){
-        //         imgwidth2 = $(this).find('img').width();
-        //         imgheight2 = $(this).find('img').height();
-        //         $(this).find('img').attr("width", imgwidth2);
-        //         $(this).find('img').attr("height", imgheight2);
-        //     });
-        //     window.onresize = function(event) {
-        //         $('.FooterIcons ul li div').each(function(){
-        //             imgwidth3 = $(this).find('img').width();
-        //             imgheight3 = $(this).find('img').height();
-        //             $(this).find('img').attr("width", imgwidth3);
-        //             $(this).find('img').attr("height", imgheight3);
-        //         });
-        //     };
-        //     $('.footerimg a').each(function(){
-        //         imgwidth5 = $(this).find('img').width();
-        //         imgheight5 = $(this).find('img').height();
-        //         $(this).find('img').attr("width", imgwidth5);
-        //         $(this).find('img').attr("height", imgheight5);
-        //     });
-        //     $('.footerBankLogo li').each(function(){
-        //         imgwidth6 = $(this).find('img').width();
-        //         imgheight6 = $(this).find('img').height();
-        //         $(this).find('img').attr("width", imgwidth6);
-        //         $(this).find('img').attr("height", imgheight6);
-        //     });
-        //     $('.owl-dots').each(function(){
-        //         $('button').attr("aria-label","dots");
-        //     });
-        // }, 1000);
 
         $('.landing-block .Blog-List > ul').each(function () {
             if ($(this).find("li").length > 0 && !$(this).hasClass("owl-carousel"))
@@ -1191,7 +1130,7 @@ function sayfaTasarim() {
         });
     }
 }
-/* ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER */
+/* ASAF GASTRO - SLIDER BAŞLATMA (tek document.ready bloğunda birleştirildi) */
 $(document).ready(function() {
     if ($('.asaf-pop-carousel').length > 0) {
         $('.asaf-pop-carousel').owlCarousel({
@@ -1200,8 +1139,8 @@ $(document).ready(function() {
             autoplayHoverPause: true,
             loop: true,
             margin: 20,
-            nav: true, 
-            navClass: ['ProductListprev', 'ProductListnext'], 
+            nav: true,
+            navClass: ['ProductListprev', 'ProductListnext'],
             dots: true,
             responsive: {
                 0: { items: 2, margin: 10 },
@@ -1210,19 +1149,14 @@ $(document).ready(function() {
             }
         });
     }
-});
-/* ==========================================================================
-   ASAF GASTRO - ASAF SLIDER BLOK (4sn & DOTS KAPALI)
-   ========================================================================== */
-$(document).ready(function() {
     if ($('.asaf-grid-slider').length > 0) {
         $('.asaf-grid-slider').owlCarousel({
             autoplay: true,
-            autoplayTimeout: 7000, 
+            autoplayTimeout: 7000,
             autoplayHoverPause: true,
             loop: true,
             margin: 0,
-            nav: false, 
+            nav: false,
             dots: false,
             items: 1
         });
