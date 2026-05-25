@@ -14987,32 +14987,40 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 #divTopProductSearch .searchform-wrapper #btnKelimeAra {
     background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347) !important;
 }
-
 /* ==========================================================================
-   ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER TASARIMI
+   ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER TASARIMI (SEO & LCP UYUMLU)
    ========================================================================== */
 .asaf-populer-kategoriler-block {
     width: 100%;
-    margin: 40px auto;
+    margin: 10px auto;
     clear: both;
 }
 
+/* Kapsayıcı Alan (Background özellikleri HTML'e taşındı) */
 .asaf-pop-title-banner {
     width: 100%;
     height: 180px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 20px;
-    background-image: url('https://static.ticimax.cloud/53979/uploads/images/asaf-populer-kategoriler-blok/populer-kategoriler-banner-1180x180-re.png'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    margin-bottom: 5px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* YENİ: HTML İçindeki Afişi Arka Plan Gibi Konumlandırma */
+.asaf-pop-banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; /* Yazının arkasında kalması için */
+}
+
+/* Afiş Üzerindeki Başlık Yazısı */
 .asaf-pop-title-content {
     font-size: 26px;
     font-weight: 700;
@@ -15020,6 +15028,8 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin: 0;
     padding: 0 20px;
     text-align: center;
+    position: relative;
+    z-index: 1; /* Resmin önünde net şekilde görünmesi için */
 }
   
 .asaf-pop-link {
@@ -15043,6 +15053,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     transform: translateY(-5px);
 }
 
+/* Kategori İkonları */
 .asaf-pop-card img {
     max-width: 100%;
     max-height: 100%;
@@ -15056,7 +15067,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin-top: 14px;
     text-transform: capitalize;
 }
-
 /* --- YAZ EKİPMANLARI BANNER (tıklanamaz, img tabanlı) --- */
 .yaz-ekipmanlari-banner {
     display: block !important;
@@ -15064,7 +15074,8 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     clear: both !important;
     width: 100%;
     max-width: 1180px;
-    margin: 20px auto !important;
+    /* ÜST: 20px | SAĞ: auto | ALT: 5px (Burayı kıstık) | SOL: auto */
+    margin: 15px auto 2px auto !important; 
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -15097,7 +15108,8 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 @media screen and (max-width: 768px) {
     .yaz-ekipmanlari-banner {
         width: calc(100% - 20px) !important;
-        margin: 15px auto !important;
+        /* MOBİL İÇİN: ÜST: 15px | SAĞ: auto | ALT: 5px | SOL: auto */
+        margin: 15px auto 5px auto !important;
     }
 
     .yaz-ekipmanlari-banner .yaz-banner-pc {
@@ -15288,7 +15300,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
    ========================================================================== */
 .asaf-slider-blok {
     width: 100% !important;
-    margin: 10px auto 40px auto !important;
+    margin: 20px auto 20px auto !important;
     clear: both !important;
     float: left !important;
 }
@@ -15372,7 +15384,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 
 @media screen and (max-width: 1041px) {
     .asaf-slider-blok {
-        margin: -15px auto 25px auto !important; 
+        margin: -15px auto 20px auto !important; 
     }
 
     .asaf-grid-container {
@@ -15446,7 +15458,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     float: none !important;
     width: 100%;
     max-width: 1180px; 
-    margin: 40px auto !important; 
+    margin: 0px auto 15px auto !important; 
     position: relative;
     /* İŞTE BURASI: Rengi zorla mavi yapar (!important) */
     background-color: #e1f5fe !important; 
