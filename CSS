@@ -1,8 +1,121 @@
 /* ==================== */
 /* ------FE07--BA------- */
 /* ==================== */
+/* Düzenleme: Google uyumluluğu & kod temizliği
+   - Gereksiz vendor prefix'ler kaldırıldı: -moz-animation, -ms-animation, -o-animation,
+     -moz-box-sizing, -ms-transform, @-moz-keyframes, @-o-keyframes
+   - IE8/9 filter hack'leri kaldırıldı
+   - Tekrar eden [hidden] tanımı temizlendi
+   - useLogin stili JS'den buraya taşındı
+*/
+
+/* ==========================================================================
+   UseLogin Dropdown - JS'den CSS'e taşındı
+   ========================================================================== */
+.useLogin {
+    display: block !important;
+    background: #fff;
+    float: left;
+    padding: 0;
+    z-index: 99999;
+    position: absolute;
+    top: 100%;
+    right: -12.5px;
+    box-shadow: 0 0 16px -10px #000;
+    opacity: 0;
+    visibility: hidden;
+    margin-left: -100px;
+    transition: all 0.3s ease;
+}
+.welcome:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15px;
+    height: 15px;
+}
+.welcome:hover .useLogin {
+    visibility: visible;
+    opacity: 1;
+    top: 130%;
+}
+.useLogin:before,
+.useLogin:after {
+    content: "";
+    bottom: 100%;
+    right: 10px;
+    border: solid transparent;
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.useLogin:before {
+    border-color: transparent;
+    border-bottom-color: #f0f0f0;
+    border-width: 9px;
+    margin-left: -9px;
+}
+.useLogin:after {
+    border-color: transparent;
+    border-bottom-color: #fff;
+    border-width: 8px;
+    margin-left: -8px;
+    right: 11px;
+}
+.useLogin ul {
+    text-align: left;
+    display: block;
+    float: none;
+}
+.useLogin ul li {
+    display: block;
+    padding: 0;
+    white-space: nowrap;
+}
+.useLogin ul li a {
+    color: #000;
+    font-size: 12px;
+    line-height: 27px;
+    padding: 0 15px;
+    display: block;
+}
+.useLogin ul li a i {
+    line-height: 27px;
+    margin-right: 6px;
+    font-size: 15px;
+    font-weight: 300;
+    display: inline-block;
+    vertical-align: top;
+}
+.useLogin ul li.cikisbtn {
+    background: #e6e6e6;
+    margin-top: 10px;
+    transition: .1s ease-in-out;
+}
+.useLogin .useName {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 27px;
+    padding: 0 15px;
+    font-weight: 500;
+    text-align: left;
+    cursor: default;
+    color: var(--theme-color);
+}
+.useLogin ul li a:hover {
+    color: var(--theme-color);
+}
+.useLogin ul li.cikisbtn:hover {
+    background: var(--theme-color);
+}
+.useLogin ul li.cikisbtn a:hover {
+    color: #fff;
+}
 /***/
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 
 :root {
     --theme-color: #ef7c00 !important;
@@ -12,13 +125,11 @@
 * {
     outline: 0;
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
     *:before, *:after {
         -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
 /*Fadein Css*/
@@ -53,14 +164,7 @@
         }
     }
 
-    @-moz-keyframes fadein {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    
     }
 
     @-webkit-keyframes fadein {
@@ -73,14 +177,7 @@
         }
     }
 
-    @-o-keyframes fadein {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    
     }
 
     body {
@@ -90,9 +187,6 @@
 
     .hoverr:before {
         -webkit-animation: fadein 0.5s;
-        -moz-animation: fadein 0.5s;
-        -ms-animation: fadein 0.5s;
-        -o-animation: fadein 0.5s;
         animation: fadein 0.5s;
     }
 
@@ -103,9 +197,6 @@
 
     .mobilaf {
         -webkit-animation: fadein 0.5s;
-        -moz-animation: fadein 0.5s;
-        -ms-animation: fadein 0.5s;
-        -o-animation: fadein 0.5s;
         animation: fadein 0.5s;
     }
 }
@@ -148,9 +239,6 @@ template {
     display: none;
 }
 
-[hidden] {
-    display: none;
-}
 
 [tabindex="-1"]:focus {
     outline: none !important;
@@ -586,9 +674,6 @@ textarea {
     filter: alpha(opacity=0);
     visibility: visible;
     -webkit-animation: fadein 0.5s;
-    -moz-animation: fadein 0.5s;
-    -ms-animation: fadein 0.5s;
-    -o-animation: fadein 0.5s;
     animation: fadein 0.5s;
 }
 
@@ -2417,7 +2502,6 @@ textarea {
         opacity: 0;
         visibility: hidden;
         -moz-transform: translateY(30px);
-        -ms-transform: translateY(30px);
         -o-transform: translateY(30px);
         transform: translateY(30px);
         -webkit-transition: all 0.4s ease;
@@ -2435,7 +2519,6 @@ textarea {
         opacity: 1;
         -webkit-transform: translateX(0);
         -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
         -o-transform: translateX(0);
         transform: translateX(0);
     }
@@ -9267,7 +9350,6 @@ section.ResimGaleri .Main .Marquee-tag {
 /*Galeri Modülü*/
 
 
-
 /*siteozelalan*/
 @media screen and (min-width:1042px) {
     #header.fixed {
@@ -10816,7 +10898,6 @@ body.CategoryBody ul.breadcrumb {
     }
 
 
-
     body .amount {
         padding: 0;
     }
@@ -11308,7 +11389,6 @@ body #header .stories.carousel {
         opacity: 1 !important;
         visibility: visible !important;
         -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
         -o-transform: translateY(0px);
         transform: translateY(0px);
         z-index: 1002 !important;
@@ -11628,7 +11708,6 @@ body #header .stories.carousel {
         opacity: 1;
         visibility: visible;
         -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
         -o-transform: translateY(0px);
         -webkit-transform: translateY(0px);
         transform: translateY(0px);
@@ -12344,7 +12423,6 @@ body #header .stories.carousel {
         body ul.breadcrumb li:last-child {
             max-width: 90px;
         }
-
 
 
         body ul.breadcrumb li a span {
@@ -13645,7 +13723,6 @@ body #header .stories.carousel {
         }
 
 
-
 /* YG DIGITAL */
 
 .trend-tags .footerMenul a {
@@ -14258,9 +14335,6 @@ body ul.breadcrumb li a span {
 }
 
 
-
-
-
 body #headerNew #wide-nav .headerContainer {
     position: relative;
 }
@@ -14373,7 +14447,6 @@ body .newHeaderNavigation.active {
     background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347) !important;
     border-radius: 10px;
 }
-
 
 
 .MenuCenter {
@@ -15204,11 +15277,9 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
         grid-template-columns: 1fr !important; /* Mobilde kartlar alt alta gelsin */
     }
 }
-/* ==================== */
-/* ------FE07--BA------- */
-/* ==================== */
+
 /***/
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 
 :root {
     --theme-color: #ef7c00 !important;
@@ -15218,13 +15289,11 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 * {
     outline: 0;
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
     *:before, *:after {
         -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
 /*Fadein Css*/
@@ -15259,14 +15328,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
         }
     }
 
-    @-moz-keyframes fadein {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    
     }
 
     @-webkit-keyframes fadein {
@@ -15279,14 +15341,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
         }
     }
 
-    @-o-keyframes fadein {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    
     }
 
     body {
@@ -15296,9 +15351,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 
     .hoverr:before {
         -webkit-animation: fadein 0.5s;
-        -moz-animation: fadein 0.5s;
-        -ms-animation: fadein 0.5s;
-        -o-animation: fadein 0.5s;
         animation: fadein 0.5s;
     }
 
@@ -15309,9 +15361,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 
     .mobilaf {
         -webkit-animation: fadein 0.5s;
-        -moz-animation: fadein 0.5s;
-        -ms-animation: fadein 0.5s;
-        -o-animation: fadein 0.5s;
         animation: fadein 0.5s;
     }
 }
@@ -15792,9 +15841,6 @@ textarea {
     filter: alpha(opacity=0);
     visibility: visible;
     -webkit-animation: fadein 0.5s;
-    -moz-animation: fadein 0.5s;
-    -ms-animation: fadein 0.5s;
-    -o-animation: fadein 0.5s;
     animation: fadein 0.5s;
 }
 
@@ -17623,7 +17669,6 @@ textarea {
         opacity: 0;
         visibility: hidden;
         -moz-transform: translateY(30px);
-        -ms-transform: translateY(30px);
         -o-transform: translateY(30px);
         transform: translateY(30px);
         -webkit-transition: all 0.4s ease;
@@ -17641,7 +17686,6 @@ textarea {
         opacity: 1;
         -webkit-transform: translateX(0);
         -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
         -o-transform: translateX(0);
         transform: translateX(0);
     }
@@ -24473,7 +24517,6 @@ section.ResimGaleri .Main .Marquee-tag {
 /*Galeri Modülü*/
 
 
-
 /*siteozelalan*/
 @media screen and (min-width:1042px) {
     #header.fixed {
@@ -26022,7 +26065,6 @@ body.CategoryBody ul.breadcrumb {
     }
 
 
-
     body .amount {
         padding: 0;
     }
@@ -26514,7 +26556,6 @@ body #header .stories.carousel {
         opacity: 1 !important;
         visibility: visible !important;
         -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
         -o-transform: translateY(0px);
         transform: translateY(0px);
         z-index: 1002 !important;
@@ -26834,7 +26875,6 @@ body #header .stories.carousel {
         opacity: 1;
         visibility: visible;
         -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
         -o-transform: translateY(0px);
         -webkit-transform: translateY(0px);
         transform: translateY(0px);
@@ -27550,7 +27590,6 @@ body #header .stories.carousel {
         body ul.breadcrumb li:last-child {
             max-width: 90px;
         }
-
 
 
         body ul.breadcrumb li a span {
@@ -28851,7 +28890,6 @@ body #header .stories.carousel {
         }
 
 
-
 /* YG DIGITAL */
 
 .trend-tags .footerMenul a {
@@ -29464,9 +29502,6 @@ body ul.breadcrumb li a span {
 }
 
 
-
-
-
 body #headerNew #wide-nav .headerContainer {
     position: relative;
 }
@@ -29579,7 +29614,6 @@ body .newHeaderNavigation.active {
     background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347) !important;
     border-radius: 10px;
 }
-
 
 
 .MenuCenter {
