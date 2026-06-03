@@ -15,6 +15,7 @@ var isHoverCartProduct = false;
 var kategoriMenuAcikGetir = true;
 var urunDetayZoomCozunurluk = 1025;
 var windowidth = document.documentElement.clientWidth;
+var pageInitialized = false;
 /* windowidth resize'da güncelleniyor — tablet döndürme gibi durumlarda doğru değer okunur */
 $(window).on('resize', function () {
     windowidth = document.documentElement.clientWidth;
@@ -401,8 +402,6 @@ function GlobalIslemler() {
 
 
     if (!pageInitialized) {
-        if (windowidth > 359 && windowidth < 769) {
-        }
         HeaderYapiKontrol();
         if (windowidth > 1041) {
             $('#instaStories').prependTo('.logoArea .rightDiv');
@@ -424,6 +423,7 @@ function GlobalIslemler() {
                 syncContentOverlay();
             }
         });
+        pageInitialized = true;
     }
 
     sayfaTasarim();
