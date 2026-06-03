@@ -164,9 +164,6 @@
         }
     }
 
-    
-    }
-
     @-webkit-keyframes fadein {
         from {
             opacity: 0;
@@ -175,9 +172,6 @@
         to {
             opacity: 1;
         }
-    }
-
-    
     }
 
     body {
@@ -1717,7 +1711,6 @@ textarea {
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -7378,7 +7371,7 @@ body.transform #formGlobal {
     z-index: 99999;
     background: #fff;
     left: -360px;
-    transition: left.3s ease-in-out;
+    transition: left .3s ease-in-out;
 }
 
     .mobilMenu.acik {
@@ -11159,7 +11152,7 @@ body #header .stories.carousel {
         z-index: 99999;
         background: #fff;
         left: -360px;
-        transition: left.3s ease-in-out;
+        transition: left .3s ease-in-out;
     }
 
         .mobilMenu.acik {
@@ -14988,15 +14981,181 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     background: linear-gradient(45deg, #ffbb8a, #ff8f5a, #ff6347) !important;
 }
 /* ==========================================================================
-   ASAF GASTRO - ÖZEL POPÜLER KATEGORİLER SLIDER TASARIMI (SEO & LCP UYUMLU)
+   ASAF GASTRO - HİYERARŞİK BLOK CSS
+   Sıralama: slider → populer-kategoriler → yaz-ekipmanlari → yaz-vitrin
+             → kategori-blok → gorkem-vitrin-ust-banner → gorkem-vitrin
    ========================================================================== */
+
+
+/* ============================================================
+   1. ASAF-SLIDER-BLOK
+   ============================================================ */
+
+.asaf-slider-blok {
+    width: 100% !important;
+    margin: 20px auto 20px auto !important;
+    clear: both !important;
+    float: left !important;
+}
+
+.asaf-grid-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.asaf-grid-col-left {
+    width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.asaf-grid-col-right {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.asaf-slider-card { height: 340px; position: relative; }
+.asaf-medium-banner { height: 180px; position: relative; }
+.asaf-large-banner { height: 260px; position: relative; }
+
+.asaf-grid-card {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: 1px solid #eeeff0 !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.asaf-grid-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1) !important;
+    border-color: #ef7c00 !important;
+}
+
+.asaf-slider-card a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.asaf-grid-card:not(.asaf-slider-card) a {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 99 !important;
+    display: block !important;
+}
+
+.asaf-grid-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.asaf-slider-blok .owl-dots,
+.asaf-grid-slider .owl-dots {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+}
+
+@media screen and (max-width: 1041px) {
+    .asaf-slider-blok {
+        margin: 0 auto 20px auto !important;
+    }
+
+    .asaf-grid-container {
+        padding: 0 10px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+    }
+
+    .asaf-grid-col-left,
+    .asaf-grid-col-right {
+        display: contents !important;
+    }
+
+    .asaf-grid-card *,
+    .asaf-grid-card span,
+    .asaf-grid-card p,
+    .asaf-grid-card h3 {
+        font-size: 0 !important;
+        color: transparent !important;
+    }
+
+    .asaf-grid-card:not(.asaf-slider-card) a {
+        position: absolute !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 99 !important;
+    }
+
+    .asaf-grid-card img {
+        display: block !important;
+    }
+
+    .asaf-slider-card {
+        order: 1 !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 680 / 340 !important;
+        border-radius: 12px !important;
+    }
+
+    .asaf-large-banner {
+        order: 2 !important;
+        width: calc(50% - 5px) !important;
+        height: auto !important;
+        aspect-ratio: 480 / 240 !important;
+        border-radius: 12px !important;
+    }
+
+    .asaf-medium-banner {
+        order: 3 !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 680 / 180 !important;
+        border-radius: 12px !important;
+        margin-top: 5px !important;
+    }
+
+    .asaf-grid-card img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+}
+
+
+/* ============================================================
+   2. ASAF-POPULER-KATEGORILER-BLOK
+   ============================================================ */
+
 .asaf-populer-kategoriler-block {
     width: 100%;
     margin: 10px auto;
     clear: both;
 }
 
-/* Kapsayıcı Alan (Background özellikleri HTML'e taşındı) */
 .asaf-pop-title-banner {
     width: 100%;
     height: 180px;
@@ -15009,7 +15168,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     justify-content: center;
 }
 
-/* YENİ: HTML İçindeki Afişi Arka Plan Gibi Konumlandırma */
 .asaf-pop-banner-bg {
     position: absolute;
     top: 0;
@@ -15017,10 +15175,9 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0; /* Yazının arkasında kalması için */
+    z-index: 0;
 }
 
-/* Afiş Üzerindeki Başlık Yazısı */
 .asaf-pop-title-content {
     font-size: 26px;
     font-weight: 700;
@@ -15029,9 +15186,9 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     padding: 0 20px;
     text-align: center;
     position: relative;
-    z-index: 1; /* Resmin önünde net şekilde görünmesi için */
+    z-index: 1;
 }
-  
+
 .asaf-pop-link {
     display: block;
     text-decoration: none;
@@ -15053,7 +15210,6 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     transform: translateY(-5px);
 }
 
-/* Kategori İkonları */
 .asaf-pop-card img {
     max-width: 100%;
     max-height: 100%;
@@ -15067,78 +15223,642 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     margin-top: 14px;
     text-transform: capitalize;
 }
-/* --- YAZ EKİPMANLARI BANNER (tıklanamaz, img tabanlı) --- */
-.yaz-ekipmanlari-banner {
+
+
+/* ============================================================
+   3. YAZ-EKİPMANLARI-BANNER (V1)
+   ============================================================ */
+
+/* Ticimax'ın dış wrapper'larına sıfırlama — boşluk bırakmaz */
+div:has(> .yaz-ekipmanlari-banner-v1),
+.Block_item:has(.yaz-ekipmanlari-banner-v1),
+.Block_item:has(.yaz-ekipmanlari-banner-v1) .Block_Text,
+section:has(.yaz-ekipmanlari-banner-v1) {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ana kapsayıcı */
+.yaz-ekipmanlari-banner-v1 {
     display: block !important;
     float: none !important;
     clear: both !important;
-    width: 100%;
-    max-width: 1180px;
-    /* ÜST: 20px | SAĞ: auto | ALT: 5px (Burayı kıstık) | SOL: auto */
-    margin: 15px auto 2px auto !important; 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100% !important;
+    max-width: 1180px !important;
+    margin: 15px auto 0 auto !important; /* ALT BOŞLUK SIFIRLANDI */
+    padding: 0 !important;
+    border-radius: 0 !important; 
+    box-shadow: none !important; 
     overflow: hidden;
-    pointer-events: none;
-    cursor: default;
-    user-select: none;
-    -webkit-user-select: none;
-    line-height: 0 !important;
+    line-height: 0 !important; 
     font-size: 0 !important;
 }
 
-.yaz-ekipmanlari-banner img {
+/* Ticimax editörünün eklediği gizli <p> boşluklarını ezer */
+.yaz-ekipmanlari-banner-v1 p,
+.yaz-ekipmanlari-banner-v1 span {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+}
+
+/* Linkin blok yapısını koruması için */
+.yaz-ekipmanlari-banner-v1 a {
+    display: block;
+    width: 100%;
+    line-height: 0;
+}
+
+.yaz-ekipmanlari-banner-v1 img {
     display: block !important;
     width: 100% !important;
     height: auto !important;
-    border-radius: 8px;
-    vertical-align: bottom !important;
+    border-radius: 0 !important; 
+    vertical-align: bottom !important; /* Görseli tabana yapıştırır */
     line-height: 0 !important;
     font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.yaz-ekipmanlari-banner .yaz-banner-pc {
+/* Mobilde tam ekrana yayıp alt boşluğu sıfırlama */
+@media screen and (max-width: 768px) {
+    .yaz-ekipmanlari-banner-v1 {
+        width: calc(100% + 30px) !important; /* Sağdaki beyaz boşluğu kapatır */
+        max-width: none !important;
+        margin: 15px -15px 0 -15px !important; /* -15px ile tam ekrana oturur */
+    }
+}
+
+
+/* ============================================================
+   4. ASAF-YAZ-VİTRİN
+   ============================================================ */
+
+/* Üst banner ile bitişik olmasını garantiye almak için */
+section:has(.asaf-yaz-vitrin),
+.Block_item:has(.asaf-yaz-vitrin) {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Ana kapsayıcı (Kendi rengiyle) */
+[class*="section.asaf-yaz-vitrin"],
+.asaf-yaz-vitrin {
     display: block !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    max-width: 1180px !important;
+    margin: 0 auto 15px auto !important; 
+    position: relative !important;
+    background-color: #e1f5fe !important; 
+    border-radius: 0 !important; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 0 0 60px 0 !important; 
+    box-sizing: border-box !important;
 }
 
-.yaz-ekipmanlari-banner .yaz-banner-mobil {
+/* Ticimax iç kutularını şeffaflaştır */
+.asaf-yaz-vitrin .ticiContainer,
+.asaf-yaz-vitrin .hazirBlokContent,
+.asaf-yaz-vitrin .txrow,
+.asaf-yaz-vitrin .txcol-sm,
+.asaf-yaz-vitrin #ticimaxTabContent {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+}
+
+.asaf-yaz-vitrin .ticiContainer,
+.asaf-yaz-vitrin .txrow {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Pasif sekme içeriklerini gizle */
+.asaf-yaz-vitrin .ticimaxAnasayfaTab:not(.active) {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Sekme butonları alanı */
+.asaf-yaz-vitrin .ticimaxTabHead {
+    display: block !important;
+    width: 100% !important;
+    border-bottom: none !important;
+    margin: -1px auto 0 auto !important; 
+    padding: 20px 15px 24px !important; /* PC İçin Üst Boşluk (20px) */
+    text-align: center !important;
+    background: transparent !important;
+}
+
+.asaf-yaz-vitrin .ticimaxTabHead ul._clearfix {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.asaf-yaz-vitrin .ticimaxTabHead ul._clearfix::before,
+.asaf-yaz-vitrin .ticimaxTabHead ul._clearfix::after {
+    display: none !important;
+    content: none !important;
+}
+
+.asaf-yaz-vitrin .ticimaxTabHead li {
+    display: inline-flex !important;
+    margin: 0 !important;
+}
+
+/* Sekme buton renk ve köşeleri (PC) */
+.asaf-yaz-vitrin .ticimaxTabHead li a {
+    background: #ffffff !important;
+    color: #333333 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    border-radius: 20px !important; /* PC Oval Köşeler */
+    border: 1px solid #eeeeee !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+}
+
+.asaf-yaz-vitrin .ticimaxTabHead li.ticimaxTabHead_active a,
+.asaf-yaz-vitrin .ticimaxTabHead li a:hover {
+    background: var(--theme-color) !important;
+    color: #ffffff !important;
+    border-color: var(--theme-color) !important;
+    box-shadow: 0 4px 10px rgba(239, 124, 0, 0.3) !important;
+}
+
+/* Ürün kartları */
+.asaf-yaz-vitrin #ticimaxTabContent .ProductList {
+    margin: 0 !important;
+    padding: 0 15px !important;
+}
+
+.asaf-yaz-vitrin #ticimaxTabContent .productItem {
+    background: #ffffff !important;
+    border-radius: 0 !important; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    height: 100% !important;
+}
+
+.asaf-yaz-vitrin .owl-dots { display: none !important; }
+.asaf-yaz-vitrin .owl-nav { top: calc(50% + 15px) !important; }
+
+/* ------------------------------------------------------------
+   MOBİL EKRANLAR İÇİN DÜZELTMELER
+   ------------------------------------------------------------ */
+@media screen and (max-width: 768px) {
+    [class*="section.asaf-yaz-vitrin"],
+    .asaf-yaz-vitrin {
+        width: calc(100% + 30px) !important; /* Sağdaki beyaz boşluğu kapatır */
+        max-width: none !important;
+        margin: 0 -15px 15px -15px !important; /* -15px ile tam ekrana oturur */
+        padding: 0 0 40px 0 !important; 
+        border-radius: 0 !important; 
+    }
+
+    .asaf-yaz-vitrin .ticimaxTabHead {
+        padding: 20px 0 24px 0 !important; /* MOBİL İÇİN YUKARIDAN 20PX BOŞLUK */
+        margin-top: 0 !important; 
+    }
+
+    .asaf-yaz-vitrin .ticimaxTabHead ul._clearfix {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        justify-items: stretch !important;
+        gap: 10px !important;
+        padding: 0 15px !important; /* Butonların ekranın sağına/soluna yapışmasını engeller */
+        box-sizing: border-box !important;
+        flex-wrap: unset !important;
+    }
+
+    .asaf-yaz-vitrin .ticimaxTabHead li {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Kusursuz Mobil Buton Hizalaması */
+    .asaf-yaz-vitrin .ticimaxTabHead li a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important; /* Grid içindeki yükseklikleri eşitler */
+        font-size: 11px !important;
+        padding: 10px 4px !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+        border-radius: 12px !important; /* MOBİL OVAL KÖŞELER */
+        line-height: 1.3 !important;
+        box-sizing: border-box !important;
+    }
+
+    .asaf-yaz-vitrin #ticimaxTabContent .ProductList {
+        padding: 0 15px !important; /* Ürünlerin de kenarlara yapışmasını engeller */
+    }
+}
+/* ============================================================
+   5. ASAF-KATEGORİ-BLOK
+   ============================================================ */
+
+.asaf-kategori-blok {
+    width: 100% !important;
+    clear: both !important;
+    float: none !important;
+    display: block !important;
+    margin: 20px auto !important;
+}
+
+.asaf-kategori-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.asaf-kategori-row-hero {
+    width: 100%;
+}
+
+.asaf-kategori-row-small {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.asaf-kategori-kart {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    background: #f5f5f5;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.asaf-kategori-kart:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.13);
+    border-color: #ef7c00;
+}
+
+.asaf-kategori-kart a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    display: block;
+}
+
+.asaf-kategori-kart img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.asaf-kategori-kart:hover img {
+    transform: scale(1.03);
+}
+
+.asaf-kategori-hero {
+    width: 100%;
+    height: 220px;
+}
+
+.asaf-kategori-small {
+    width: calc((100% - 32px) / 3);
+    height: 200px;
 }
 
 @media screen and (max-width: 768px) {
-    .yaz-ekipmanlari-banner {
-        width: calc(100% - 20px) !important;
-        /* MOBİL İÇİN: ÜST: 15px | SAĞ: auto | ALT: 5px | SOL: auto */
-        margin: 15px auto 5px auto !important;
+    .asaf-kategori-container {
+        padding: 0 10px;
+        gap: 10px;
     }
 
-    .yaz-ekipmanlari-banner .yaz-banner-pc {
+    .asaf-kategori-row-small {
+        gap: 10px;
+    }
+
+    .asaf-kategori-hero {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 710 / 270;
+        border: 2px solid #ef7c00 !important;
+    }
+
+    .asaf-kategori-small {
+        width: calc(50% - 5px);
+        height: auto;
+        aspect-ratio: 340 / 200;
+    }
+  /* ============================================================
+   ASAF-KATEGORİ-BLOK - MOBİL SIRALAMA AYARI
+   ============================================================ */
+@media screen and (max-width: 768px) {
+    .asaf-kategori-row-small {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    /* Mobil Grid Sıralaması (1-3-5 Sol Sütun, 2-4-6 Sağ Sütun) */
+    .kat-tost      { order: 1; } /* Sol 1. Sıra */
+    .kat-fritoz    { order: 2; } /* Sağ 1. Sıra */
+    .kat-doner     { order: 3; } /* Sol 2. Sıra */
+    .kat-hamburger { order: 4; } /* Sağ 2. Sıra */
+    .kat-ocak      { order: 5; } /* Sol 3. Sıra */
+    .kat-izgara    { order: 6; } /* Sağ 3. Sıra */
+}
+}
+
+
+/* ============================================================
+   6. GÖRKEM-VİTRİN-ÜST-BANNER
+   ============================================================ */
+
+.gorkem-vitrin-ust-banner {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ana kapsayıcı */
+.gorkem-vitrin-ust-banner {
+    display: block;
+    width: 100%;
+    max-width: 1180px;
+    margin: 24px auto 0 auto !important; /* Alt boşluk sıfırlandı */
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    float: none !important;
+}
+
+/* PC görseli: varsayılan görünür */
+.gorkem-vitrin-ust-banner .gvub-pc {
+    display: block !important;
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+}
+
+/* Mobil görseli: varsayılan gizli */
+.gorkem-vitrin-ust-banner .gvub-mobil {
+    display: none !important;
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+}
+
+
+/* ============================================================
+   7. GÖRKEM-VİTRİN
+   ============================================================ */
+
+/* Üst banner ile sıfır boşluk: section wrapper'ı sıfırla */
+section:has(.gorkem-vitrin),
+.Block_item:has(.gorkem-vitrin) {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Ana kapsayıcı */
+[class*="section.gorkem-vitrin"],
+.gorkem-vitrin {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    max-width: 1180px !important;
+    margin: 0 auto !important; /* Üst banner ile bitişik */
+    position: relative !important;
+    background-color: #2e6da4 !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+    /* İSTENMEYEN BOŞLUK BURADAN SİLİNDİ (padding-top: 0 yapıldı) */
+    padding: 0px 0 60px 0 !important; 
+    box-sizing: border-box !important;
+}
+
+/* Ticimax iç kutularını şeffaflaştır */
+.gorkem-vitrin .ticiContainer,
+.gorkem-vitrin .hazirBlokContent,
+.gorkem-vitrin .txrow,
+.gorkem-vitrin .txcol-sm,
+.gorkem-vitrin #ticimaxTabContent {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+}
+
+.gorkem-vitrin .ticiContainer,
+.gorkem-vitrin .txrow {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+}
+
+/* Pasif sekme içeriklerini gizle */
+.gorkem-vitrin .ticimaxAnasayfaTab:not(.active) {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Sekme butonları alanı */
+.gorkem-vitrin .ticimaxTabHead {
+    display: block !important;
+    width: 100% !important;
+    border-bottom: none !important;
+    padding: 20px 15px 24px !important; /* Butonların çok yapışmaması için hafif bir pay eklendi */
+    margin: 0 auto !important;
+    text-align: center !important;
+    background: transparent !important;
+}
+
+.gorkem-vitrin .ticimaxTabHead ul._clearfix {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+}
+
+.gorkem-vitrin .ticimaxTabHead ul._clearfix::before,
+.gorkem-vitrin .ticimaxTabHead ul._clearfix::after {
+    display: none !important;
+    content: none !important;
+}
+
+.gorkem-vitrin .ticimaxTabHead li {
+    float: none !important;
+    display: inline-flex !important;
+    margin: 0 !important;
+}
+
+.gorkem-vitrin .ticimaxTabHead li a {
+    background: #ffffff !important;
+    color: #333333 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    border-radius: 20px !important;
+    border: 1px solid #eeeeee !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+}
+
+.gorkem-vitrin .ticimaxTabHead li.ticimaxTabHead_active a,
+.gorkem-vitrin .ticimaxTabHead li a:hover {
+    background: var(--theme-color) !important;
+    color: #ffffff !important;
+    border-color: var(--theme-color) !important;
+    box-shadow: 0 4px 10px rgba(239, 124, 0, 0.3) !important;
+}
+
+/* Ürün kartları */
+.gorkem-vitrin #ticimaxTabContent .ProductList {
+    margin: 0 !important;
+    padding: 0 15px !important;
+}
+
+.gorkem-vitrin #ticimaxTabContent .productItem {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    height: 100% !important;
+}
+
+.gorkem-vitrin .owl-dots { display: none !important; }
+.gorkem-vitrin .owl-nav { top: calc(50% + 15px) !important; }
+
+/* ------------------------------------------------------------
+   MOBİL EKRANLAR İÇİN DÜZELTMELER
+   ------------------------------------------------------------ */
+@media screen and (max-width: 768px) {
+    /* Banner'ı tam ekran yapmak için dış boşlukları absorbe et */
+    .gorkem-vitrin-ust-banner {
+        width: calc(100% + 20px) !important;
+        max-width: none !important;
+        margin: 16px -10px 0 -10px !important; /* 10px'lik container boşluğunu yok eder */
+        padding: 0 !important;
+    }
+
+    .gorkem-vitrin-ust-banner .gvub-pc {
         display: none !important;
     }
 
-    .yaz-ekipmanlari-banner .yaz-banner-mobil {
+    .gorkem-vitrin-ust-banner .gvub-mobil {
         display: block !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+    }
+
+    /* Vitrin alt tabanını tam ekran yapmak için */
+    [class*="section.gorkem-vitrin"],
+    .gorkem-vitrin {
+        width: calc(100% + 20px) !important;
+        max-width: none !important;
+        margin: 0 -10px !important;
+        padding: 10px 0 40px 0 !important;
+    }
+
+    .gorkem-vitrin .ticimaxTabHead ul._clearfix {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-items: stretch !important;
+        gap: 8px !important;
+        flex-wrap: unset !important;
+    }
+
+    .gorkem-vitrin .ticimaxTabHead li {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .gorkem-vitrin .ticimaxTabHead li a {
+        font-size: 11px !important;
+        padding: 10px 4px !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+        border-radius: 12px !important;
+        line-height: 1.3 !important;
+    }
+
+    .gorkem-vitrin #ticimaxTabContent .ProductList {
+        padding: 0 10px !important;
     }
 }
-  
-  .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon{ flex: 1 !important;}
- 
-  .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon .mega-menu-card--has-sub .nav-submenu .nav-submenu{ height: max-content !important; overflow: auto !important; position: relative !important; min-height: 108px;}
-  .newHeaderNavigation:not(.mobileStyle) .menu-wrap .mega-menu-card--has-sub > .nav-submenu > .nav-item > a { font-weight: 800 !important;}
-  .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon .mega-menu-card--has-sub .nav-submenu .nav-submenu li{ height: 36px;}
-}
-/* ======================================================= */
+ /* ======================================================= */
 /* ASAF GASTRO - 2. EL SAYFASI ÖZEL TASARIMI (GÜNCEL)      */
 /* ======================================================= */
 
-.asaf-2el-container {
+..asaf-2el-container {
     font-family: 'Mulish', sans-serif;
-    max-width: 1200px;
-    margin: 40px auto;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin-left: auto !important; /* Temanın sola yaslamasını ezer */
+    margin-right: auto !important; /* Temanın sağdaki boşluğunu ezer */
+    margin-top: 40px;
+    margin-bottom: 40px;
     padding: 0 15px;
     color: #333;
     box-sizing: border-box;
     overflow: hidden;
+    display: block !important; /* Kapsayıcının tam blok olarak davranmasını zorunlu kılar */
+    clear: both !important; /* Eğer üstte float kullanan bir element varsa onu temizler */
 }
 
 .asaf-2el-container * {
@@ -15148,7 +15868,8 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 .asaf-row {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: center; /* Dikey ortalama */
+    justify-content: center; /* YENİ EKLENDİ: İçerikleri yatay eksende ortalar */
     gap: 40px;
     margin-bottom: 60px;
 }
@@ -15172,7 +15893,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     border-radius: 12px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
     display: block;
-    margin: 0 auto;
+    margin: 0 auto; /* Resmi kendi sütunu içinde ortalar */
 }
 
 .asaf-col-text {
@@ -15273,6 +15994,7 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
 @media (max-width: 991px) {
     .asaf-row, .asaf-row-reverse {
         flex-direction: column !important;
+        align-items: center !important; /* YENİ EKLENDİ: Sütunları alt alta girdiği zaman merkeze hizalar */
         gap: 20px !important;
         margin-bottom: 50px !important;
     }
@@ -15294,274 +16016,4 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .desktopMenuClose {
     .asaf-features-grid {
         grid-template-columns: 1fr !important;
     }
-}
-/* ==========================================================================
-   ASAF GASTRO - SLIDER BLOK TASARIMI V1
-   ========================================================================== */
-.asaf-slider-blok {
-    width: 100% !important;
-    margin: 20px auto 20px auto !important;
-    clear: both !important;
-    float: left !important;
-}
-
-.asaf-grid-container {
-    width: 100%;
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-
-.asaf-grid-col-left {
-    width: 680px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.asaf-grid-col-right {
-    width: 480px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.asaf-slider-card { height: 340px; position: relative; }
-.asaf-medium-banner { height: 180px; position: relative; }
-.asaf-large-banner { height: 260px; position: relative; }
-
-.asaf-grid-card {
-    background: #ffffff !important;
-    border-radius: 16px !important;
-    border: 1px solid #eeeff0 !important;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05) !important;
-    overflow: hidden;
-    position: relative;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
-}
-
-.asaf-grid-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1) !important;
-    border-color: #ef7c00 !important;
-}
-
-.asaf-slider-card a {
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.asaf-grid-card:not(.asaf-slider-card) a {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 99 !important;
-    display: block !important;
-}
-
-.asaf-grid-card img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block !important;
-}
-
-.asaf-slider-blok .owl-dots,
-.asaf-grid-slider .owl-dots {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    margin: 0 !important;
-}
-
-@media screen and (max-width: 1041px) {
-    .asaf-slider-blok {
-        margin: -15px auto 20px auto !important; 
-    }
-
-    .asaf-grid-container {
-        padding: 0 10px !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: space-between !important;
-        gap: 10px !important;
-    }
-    
-    .asaf-grid-col-left, 
-    .asaf-grid-col-right {
-        display: contents !important;
-    }
-
-    .asaf-grid-card *, 
-    .asaf-grid-card span, 
-    .asaf-grid-card p, 
-    .asaf-grid-card h3 {
-        font-size: 0 !important;
-        color: transparent !important;
-    }
-    
-    .asaf-grid-card:not(.asaf-slider-card) a {
-        position: absolute !important;
-        width: 100% !important;
-        height: 100% !important;
-        z-index: 99 !important;
-    }
-    
-    .asaf-grid-card img {
-        display: block !important;
-    }
-
-    .asaf-slider-card {
-        order: 1 !important;
-        width: 100% !important;
-        height: auto !important;
-        aspect-ratio: 680 / 340 !important;
-        border-radius: 12px !important;
-    }
-
-    .asaf-large-banner {
-        order: 2 !important;
-        width: calc(50% - 5px) !important;
-        height: auto !important;
-        aspect-ratio: 480 / 240 !important;
-        border-radius: 12px !important;
-    }
-
-    .asaf-medium-banner {
-        order: 3 !important;
-        width: 100% !important;
-        height: auto !important;
-        aspect-ratio: 680 / 180 !important;
-        border-radius: 12px !important;
-        margin-top: 5px !important;
-    }
-
-    .asaf-grid-card img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important; 
-    }
-}
-/* --- ASAF YAZ VİTRİNİ --- */
-
-.asaf-yaz-vitrin {
-    display: block !important;
-    float: none !important;
-    width: 100%;
-    max-width: 1180px; 
-    margin: 0px auto 15px auto !important; 
-    position: relative;
-    /* İŞTE BURASI: Rengi zorla mavi yapar (!important) */
-    background-color: #e1f5fe !important; 
-    border-radius: 12px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
-    padding-top: 30px !important; 
-    padding-bottom: 60px !important; 
-}
-
-.asaf-yaz-vitrin::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* TİCİMAX'IN İNATÇI BEYAZ KUTULARINI ŞEFFAF YAPIYORUZ */
-.asaf-yaz-vitrin .Block_Text,
-.asaf-yaz-vitrin .ticiContainer,
-.asaf-yaz-vitrin #ticimaxTabContent {
-    background: transparent !important;
-    box-shadow: none !important;
-}
-
-.asaf-yaz-vitrin .ticimaxTabHead {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px !important;
-    border-bottom: none !important;
-    padding: 0 15px !important;
-    position: relative;
-    z-index: 2;
-    max-width: 1180px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.asaf-yaz-vitrin .ticimaxTabHead li { float: none !important; margin: 0 !important; }
-
-.asaf-yaz-vitrin .ticimaxTabHead li a {
-    background: #fff;
-    color: #333 !important;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px 24px !important;
-    border-radius: 20px !important;
-    border: 1px solid #eee !important;
-    transition: all 0.3s ease;
-    display: block;
-}
-
-.asaf-yaz-vitrin .ticimaxTabHead li.ticimaxTabHead_active a,
-.asaf-yaz-vitrin .ticimaxTabHead li a:hover {
-    background: var(--theme-color) !important;
-    color: #fff !important;
-    border-color: var(--theme-color) !important;
-    box-shadow: 0 4px 10px rgba(239, 124, 0, 0.3);
-}
-
-.asaf-yaz-vitrin #ticimaxTabContent {
-    padding-top: 0 !important; 
-    padding-bottom: 0 !important;
-    max-width: 1180px;
-    margin: 0 auto !important;
-}
-
-.asaf-yaz-vitrin #ticimaxTabContent .ProductList { margin: 0 !important; padding: 0 15px !important; }
-
-/* Ürün kartlarının arkası beyaz kalsın diye */
-.asaf-yaz-vitrin #ticimaxTabContent .productItem {
-    background: #fff !important;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    height: 100%;
-    margin-bottom: 0 !important;
-}
-
-.asaf-yaz-vitrin .owl-nav { top: calc(50% + 15px) !important; }
-
-@media screen and (max-width: 768px) {
-    .asaf-yaz-vitrin {
-        padding-top: 20px !important; 
-        padding-bottom: 40px !important; 
-    }
-    
-    .asaf-yaz-vitrin .ticimaxTabHead {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding-bottom: 10px !important;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    
-    .asaf-yaz-vitrin .ticimaxTabHead::-webkit-scrollbar { display: none; }
-    
-    .asaf-yaz-vitrin .ticimaxTabHead li a {
-        font-size: 13px;
-        padding: 8px 16px !important;
-        white-space: nowrap;
-    }
-    
-    .asaf-yaz-vitrin #ticimaxTabContent .ProductList { padding: 0 5px !important; }
 }
