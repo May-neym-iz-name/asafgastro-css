@@ -14541,7 +14541,7 @@ body .newHeaderNavigation.active {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: start;
-    gap: 14px 16px;
+    gap: 0;
     padding: 48px 22px 28px;
     background: #f3f4f6;
     max-width: 100% !important;
@@ -14712,6 +14712,8 @@ body .newHeaderNavigation.active {
     padding-top: 1px;
     border-top: 1px solid #e8ebf0;
     background: #fafbfc;
+  	overflow: auto;
+  	min-height: 76px;
 }
 
 .newHeaderNavigation:not(.mobileStyle) .menu-wrap .kolon > li.mega-menu-card .nav-submenu > li {
@@ -14819,12 +14821,14 @@ body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .newHeaderNavUl > li.
 }
 
 
-body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .newHeaderNavUl > li.kat-open .menu-wrap .menu-list-row,
 body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .newHeaderNavUl > li.kat-open .menu-wrap .kolon,
 body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .newHeaderNavUl > li.kat-open .menu-wrap .kolon > li.mega-menu-card > a {
     white-space: normal;
     gap: 6px !important;
     min-height: 60px;
+}
+body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .newHeaderNavUl > li.kat-open .menu-wrap .menu-list-row .kolon{
+	padding: 0 6px !important;
 }
 body .newHeaderNavigation:not(.mobileStyle).kat-panel-open .newHeaderNavUl > li.kat-open .menu-wrap .menu-list-row{
     min-height: 480px;
